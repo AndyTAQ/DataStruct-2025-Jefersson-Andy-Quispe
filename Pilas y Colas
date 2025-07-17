@@ -1,0 +1,49 @@
+#include <iostream>
+#include <stack>
+#include <queue>
+#include <stdexcept>
+int main()
+{
+std::stack<int> pila; // LIFO
+std::queue<int> cola; // FIFO
+std::cout << "== PILA ==\n";
+pila.push(10); // PUSH 10
+pila.push(20); // PUSH 20
+std::cout << "Top: " << pila.top() << "\n"; // PEEK 20
+pila.pop(); // POP (20 fuera)
+std::cout << "Nuevo top tras POP: " << pila.top() << "\n"; // 10
+std::cout << "Tamaño pila: " << pila.size() << "\n\n";
+std::cout << "== COLA ==\n";
+cola.push(5); // ENQUEUE 5
+cola.push(15); // ENQUEUE 15
+std::cout << "Front: " << cola.front() << "\n"; // FRONT 5
+cola.pop(); // DEQUEUE (5 fuera)
+std::cout << "Nuevo front tras DEQUEUE: " << cola.front() << "\n"; // 15
+std::cout << "Tamaño cola: " << cola.size() << "\n\n";
+std::cout << "== TRANSFER de PILA a COLA (n = 1) ==\n";
+pila.push(30); // Agregamos un nuevo elemento a la pila
+int n = 1;
+while (n-- && !pila.empty()) {
+int x = pila.top(); pila.pop();
+cola.push(x);
+}
+std::cout << "Nuevo front en cola tras TRANSFER: " << cola.front() << "\n";
+std::cout << "Tamaño pila: " << pila.size() << "\n";
+std::cout << "Tamaño cola: " << cola.size() << "\n";
+return 0;
+}
+
+
+SALIDA
+== PILA ==
+Top: 20
+Nuevo top tras POP: 10
+Tamaño pila: 1
+== COLA ==
+Front: 5
+Nuevo front tras DEQUEUE: 15
+Tamaño cola: 1
+== TRANSFER de PILA a COLA (n = 1) ==
+Nuevo front en cola tras TRANSFER: 15
+Tamaño pila: 0
+Tamaño cola: 2
