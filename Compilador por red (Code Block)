@@ -1,0 +1,92 @@
+ Diseño:
+Laptop A (Cliente 1): Ingresa el primer dígito.
+
+Laptop B (Cliente 2): Ingresa el segundo dígito.
+
+Laptop C (Servidor): Recibe ambos dígitos, los suma y muestra el resultado.
+
+Requisitos:
+Sistema compatible con sockets (Linux o Windows con Winsock).
+
+Compilador CodeBlock.
+
+La IP del servidor debe ser conocida por los clientes.
+
+Usa puertos distintos si haces múltiples pruebas.
+
+SERVIDOR (maquina C)
+// servidor.cpp
+#include <iostream>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <unistd.h>
+using namespace std;
+
+int main() {
+    int server_fd, new_socket;
+    struct sockaddr_in address;
+    int opt = 1, addrlen = sizeof(address);
+    char buffer[1024] = {0};
+    int port = 8080;
+
+    server_fd = socket(AF_INET, SOCK_STREAM, 0);
+    setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt));
+
+    address.sin_family = AF_INET;
+    address.sin_addr.s_addr = INADDR_ANY;
+    address.sin_port = htons(port);
+
+    bind(server_fd, (struct sockaddr *)&address, sizeof(address));
+    listen(server_fd, 3);
+
+    int digits[2], count = 0;
+    cout << "Esperando 2 conexiones...\n";
+
+    while (count < 2) {
+        new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen);
+        read(new_socket, buffer, 1024);
+        digits[count] = atoi(buffer);
+        cout << "Recibido digito " << count + 1 << ": " << digits[count] << endl;
+        count++;
+        close(new_socket);
+    }
+
+    int suma = digits[0] + digits[1];
+    cout << "Resultado de la suma: " << digits[0] << " + " << digits[1] << " = " << suma << endl;
+
+    return 0;
+}
+
+Clientes (A y B)
+
+// cliente.cpp
+#include <iostream>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+using namespace std;
+
+int main() {
+    string ip_servidor = "127.0.0.1"; // Cambia a la IP real del servidor
+    int puerto = 8080;
+
+    int sock = socket(AF_INET, SOCK_STREAM, 0);
+    struct sockaddr_in serv_addr;
+
+    serv_addr.sin_family = AF_INET;
+    serv_addr.sin_port = htons(puerto);
+    inet_pton(AF_INET, ip_servidor.c_str(), &serv_addr.sin_addr);
+
+    connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
+
+    int digito;
+    cout << "Ingresa un digito: ";
+    cin >> digito;
+
+    string mensaje = to_string(digito);
+    send(sock, mensaje.c_str(), mensaje.length(), 0);
+
+    cout << "Enviado al servidor.\n";
+    close(sock);
+    return 0;
+}
