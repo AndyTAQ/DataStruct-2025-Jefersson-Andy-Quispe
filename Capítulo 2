@@ -1,0 +1,174 @@
+Capítulo 2 - Técnicas de Programación (Antti Laaksonen)
+2.1.1 Entrada y salida en C++
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+ios::sync_with_stdio(0);
+cin.tie(0);
+int a, b;
+string x;
+cin >> a >> b >> x;
+cout << a << " " << b << " " << x << "\n";
+return 0;
+}
+
+2.1.2 Trabajando con números - Factorial módulo m
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+int n, m;
+cin >> n >> m;
+long long x = 1;
+for (int i = 1; i <= n; i++) {
+x = (x * i) % m;
+}
+cout << x << "\n";
+return 0;
+}
+
+2.1.2 Comparación de punto flotante
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+double a = 0.3 * 3 + 0.1;
+printf("%.20f\n", a);
+if (abs(a - 1.0) < 1e-9) {
+cout << "Iguales\n";
+} else {
+cout << "Distintos\n";
+}
+return 0;
+}
+
+2.1.3 Acortar código con typedef y macros
+
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef vector<int> vi;
+typedef pair<int,int> pi;
+#define F first
+#define S second
+#define PB push_back
+#define MP make_pair
+#define REP(i,a,b) for (int i = a; i <= b; i++)
+int main() {
+vi v;
+v.PB(1); v.PB(2); v.PB(3);
+for (auto x : v) cout << x << " ";
+cout << "\n";
+REP(i,1,5) cout << i << " ";
+cout << "\n";
+return 0;
+}
+
+2.2.1 Generar subconjuntos
+
+#include <bits/stdc++.h>
+using namespace std;
+int n;
+vector<int> subset;
+void search(int k) {
+if (k == n+1) {
+for (int x : subset) cout << x << " ";
+cout << "\n";
+} else {
+subset.push_back(k);
+search(k+1);
+subset.pop_back();
+search(k+1);
+}
+}
+int main() {
+cin >> n;
+search(1);
+}
+
+2.2.2 Generar permutaciones
+
+#include <bits/stdc++.h>
+using namespace std;
+int n;
+vector<int> permutation;
+vector<bool> chosen;
+void search() {
+if (permutation.size() == n) {
+for (int x : permutation) cout << x << " ";
+cout << "\n";
+} else {
+for (int i = 1; i <= n; i++) {
+if (chosen[i]) continue;
+chosen[i] = true;
+permutation.push_back(i);
+search();
+chosen[i] = false;
+permutation.pop_back();
+}
+}
+}
+int main() {
+cin >> n;
+chosen.assign(n+1, false);
+search();
+}
+
+2.2.3 Backtracking: problema de las n reinas
+
+#include <bits/stdc++.h>
+using namespace std;
+int n, count_queens = 0;
+vector<int> col, diag1, diag2;
+void search(int y) {
+if (y == n) {
+count_queens++;
+return;
+}
+for (int x = 0; x < n; x++) {
+if (col[x] || diag1[x + y] || diag2[x - y + n - 1]) continue;
+col[x] = diag1[x + y] = diag2[x - y + n - 1] = 1;
+search(y + 1);
+col[x] = diag1[x + y] = diag2[x - y + n - 1] = 0;
+}
+}
+int main() {
+cin >> n;
+col.resize(n);
+diag1.resize(2 * n);
+diag2.resize(2 * n);
+search(0);
+cout << count_queens << "\n";
+}
+
+2.3.1 Operaciones con bits
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+int x = 5328;
+cout << __builtin_clz(x) << "\n";
+cout << __builtin_ctz(x) << "\n";
+cout << __builtin_popcount(x) << "\n";
+cout << __builtin_parity(x) << "\n";
+}
+
+2.3.2 Representación de conjuntos y máscaras
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+int x = 0;
+x |= (1<<1);
+x |= (1<<3);
+x |= (1<<4);
+x |= (1<<8);
+cout << __builtin_popcount(x) << "\n";
+for (int i = 0; i < 32; i++) {
+if (x & (1<<i)) cout << i << " ";
+}
+cout << "\n";
+int y = (1<<3)|(1<<6)|(1<<8)|(1<<9);
+int z = x | y;
+cout << __builtin_popcount(z) << "\n";
+}
