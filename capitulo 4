@@ -1,0 +1,129 @@
+EJERCICIOS DEL CAPITULO NÚMERO 4:
+1. Bubble Sort:
+
+#include <iostream>
+#include <vector>
+using namespace std;
+void bubbleSort(vector<int>& array) {
+int n = array.size();
+for (int i = 0; i < n; i++) {
+for (int j = 0; j < n - 1; j++) {
+if (array[j] > array[j + 1]) {
+swap(array[j], array[j + 1]);
+}
+}
+}
+}
+int main() {
+vector<int> v = {3, 5, 1, 4, 2};
+bubbleSort(v);
+for (int x : v) cout << x << " ";
+}
+
+
+2. Merge Sort
+
+#include <iostream>
+#include <vector>
+using namespace std;
+void merge(vector<int>& array, int a, int b) {
+int k = (a + b) / 2;
+vector<int> temp;
+int i = a, j = k + 1;
+while (i <= k && j <= b) {
+if (array[i] < array[j]) temp.push_back(array[i++]);
+else temp.push_back(array[j++]);
+}
+while (i <= k) temp.push_back(array[i++]);
+while (j <= b) temp.push_back(array[j++]);
+for (int i = 0; i < temp.size(); i++) {
+array[a + i] = temp[i];
+}
+}
+void mergeSort(vector<int>& array, int a, int b) {
+if (a >= b) return;
+int k = (a + b) / 2;
+mergeSort(array, a, k);
+mergeSort(array, k + 1, b);
+merge(array, a, b);
+}
+int main() {
+vector<int> v = {8, 2, 6, 3, 1, 9, 4, 7};
+mergeSort(v, 0, v.size() - 1);
+for (int x : v) cout << x << " ";
+}
+
+
+3. Counting Sort (asumiendo elementos pequeños ≥ 0)
+
+#include <iostream>
+#include <vector>
+using namespace std;
+void countingSort(vector<int>& array, int maxValue) {
+vector<int> count(maxValue + 1, 0);
+for (int x : array) count[x]++;
+array.clear();
+for (int i = 0; i <= maxValue; i++) {
+for (int j = 0; j < count[i]; j++) {
+array.push_back(i);
+}
+}
+}
+int main() {
+vector<int> v = {3, 6, 1, 9, 3, 5, 9};
+countingSort(v, 9);
+for (int x : v) cout << x << " ";
+}
+
+
+4. Uso de sort() de C++
+  
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int main() {
+vector<int> v = {4, 2, 5, 3, 5, 8, 3};
+sort(v.begin(), v.end()); // Orden creciente
+for (int x : v) cout << x << " ";
+}
+
+
+5. Verificar si los elementos son únicos usando sort()
+
+#include <iostream>
+#include <algorithm>
+using namespace std;
+bool areUnique(int array[], int n) {
+sort(array, array + n);
+for (int i = 0; i < n - 1; i++) {
+if (array[i] == array[i + 1]) return false;
+}
+return true;
+}
+int main() {
+int a[] = {1, 5, 3, 2, 6};
+int n = sizeof(a) / sizeof(a[0]);
+cout << (areUnique(a, n) ? "YES" : "NO");
+}
+
+
+6. Binary Search
+  
+#include <iostream>
+using namespace std;
+bool binarySearch(int array[], int n, int x) {
+int a = 0, b = n - 1;
+while (a <= b) {
+int k = (a + b) / 2;
+if (array[k] == x) return true;
+if (array[k] < x) a = k + 1;
+else b = k - 1;
+}
+return false;
+}
+int main() {
+int a[] = {1, 3, 4, 6, 9, 12};
+int n = 6;
+cout << (binarySearch(a, n, 9) ? "YES" : "NO");
+}
