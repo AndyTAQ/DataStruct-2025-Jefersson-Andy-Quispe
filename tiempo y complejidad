@@ -1,0 +1,135 @@
+#include <iostream>
+#include <list>
+#include <stack>
+#include <queue>
+#include <vector>
+#include <chrono>
+#include <cstdlib>
+#include <iomanip>
+using namespace std;
+using namespace chrono;
+
+// ====== Árbol Binario ======
+
+struct Node {
+int val;
+Node* left;
+Node* right;
+Node(int x) : val(x), left(nullptr), right(nullptr) {}
+};
+Node* insertArbol(Node* root, int val) {
+if (!root) return new Node(val);
+if (val < root->val) root->left = insertArbol(root->left, val);
+else root->right = insertArbol(root->right, val);
+return root;
+}
+bool searchArbol(Node* root, int val) {
+if (!root) return false;
+if (root->val == val) return true;
+return val < root->val ? searchArbol(root->left, val) : searchArbol(root->right, val);
+}
+Node* deleteArbol(Node* root, int val) {
+if (!root) return nullptr;
+if (val < root->val) root->left = deleteArbol(root->left, val);
+else if (val > root->val) root->right = deleteArbol(root->right, val);
+else {
+if (!root->left) { Node* r = root->right; delete root; return r; }
+if (!root->right) { Node* l = root->left; delete root; return l; }
+Node* succ = root->right;
+while (succ->left) succ = succ->left;
+root->val = succ->val;
+root->right = deleteArbol(root->right, succ->val);
+}
+return root;
+}
+// ====== Medir tiempo ======
+template <typename F>
+long long medirTiempo(F f) {
+auto ini = high_resolution_clock::now();
+f();
+auto fin = high_resolution_clock::now();
+return duration_cast<microseconds>(fin - ini).count();
+}
+// ====== Tabla formateada ======
+void imprimirEncabezado() {
+cout << left
+<< setw(10) << "Tamano"
+<< setw(12) << "Estructura"
+<< setw(20) << "Insert(us)"
+<< setw(20) << "Buscar(us)"
+<< setw(20) << "Eliminar(us)"
+<< setw(12) << "Ejemplo"
+<< setw(18) << "C. Insert"
+<< setw(18) << "C. Buscar"
+<< setw(18) << "C. Eliminar"
+<< "\n";
+cout << string(155, '-') << "\n";
+}
+void imprimirFila(string estructura, long long tamano, long long tinsert, long long tbuscar, long long teliminar, string ejemplo, string ci, string cb, string ce) {
+cout << left
+<< setw(10) << tamano
+<< setw(12) << estructura
+<< setw(20) << (to_string(tinsert) + " us")
+<< setw(20) << (to_string(tbuscar) + " us")
+<< setw(20) << (to_string(teliminar) + " us")
+<< setw(12) << ejemplo
+<< setw(18) << ci
+<< setw(18) << cb
+<< setw(18) << ce
+<< "\n";
+}
+// ====== Principal ======
+int main() {
+srand(time(0));
+vector<long long> tamanos = {100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000};
+imprimirEncabezado();
+for (auto N : tamanos) {
+vector<int> datos(N);
+for (int i = 0; i < N; i++) datos[i] = rand();
+int objetivo = datos[N / 2];
+int eliminar = datos[N / 3];
+// LISTA
+list<int> lista;
+long long ti = medirTiempo([&]() { for (int x : datos) lista.push_back(x); });
+long long tb = medirTiempo([&]() { for (int x : lista) if (x == objetivo) break; });
+long long te = medirTiempo([&]() { lista.remove(eliminar); });
+string ejemplo = lista.empty() ? "vacio" : to_string(lista.front());
+imprimirFila("Lista", N, ti, tb, te, ejemplo, "O(1)", "O(n)", "O(n)");
+// PILA
+stack<int> pila;
+ti = medirTiempo([&]() { for (int x : datos) pila.push(x); });
+tb = medirTiempo([&]() {
+stack<int> temp = pila;
+while (!temp.empty()) {
+if (temp.top() == objetivo) break;
+temp.pop();
+}
+});
+te = medirTiempo([&]() { if (!pila.empty()) pila.pop(); });
+ejemplo = pila.empty() ? "vacio" : to_string(pila.top());
+imprimirFila("Pila", N, ti, tb, te, ejemplo, "O(1)", "O(n)", "O(1)");
+// COLA
+queue<int> cola;
+ti = medirTiempo([&]() { for (int x : datos) cola.push(x); });
+tb = medirTiempo([&]() {
+queue<int> temp = cola;
+while (!temp.empty()) {
+if (temp.front() == objetivo) break;
+temp.pop();
+}
+});
+te = medirTiempo([&]() { if (!cola.empty()) cola.pop(); });
+ejemplo = cola.empty() ? "vacio" : to_string(cola.front());
+imprimirFila("Cola", N, ti, tb, te, ejemplo, "O(1)", "O(n)", "O(1)");
+// ÁRBOL BINARIO
+Node* raiz = nullptr;
+ti = medirTiempo([&]() {
+for (int x : datos) raiz = insertArbol(raiz, x);
+});
+tb = medirTiempo([&]() { bool encontrado = searchArbol(raiz, objetivo); });
+te = medirTiempo([&]() { raiz = deleteArbol(raiz, eliminar); });
+ejemplo = raiz ? to_string(raiz->val) : "vacio";
+imprimirFila("Arbol Binario", N, ti, tb, te, ejemplo, "O(log n)", "O(log n)", "O(log n)");
+}
+return 0;
+}
