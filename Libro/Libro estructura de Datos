@@ -1,0 +1,1273 @@
+\documentclass[12pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{tcolorbox}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{geometry}
+\geometry{a4paper, margin=2.5cm}
+
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\color{blue!70!black}}
+  {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{blue!50!black}}
+  {\thesection}{1em}{}
+
+
+\makeatletter
+\def\cleardoublepage{\clearpage}
+\makeatother
+
+\begin{document}
+\begin{titlepage}
+    \newgeometry{margin=2.5cm}
+    \thispagestyle{empty}
+
+    % Logos a la izquierda y derecha
+    \noindent
+    \begin{minipage}{0.49\textwidth}
+        \raggedright
+        \includegraphics[width=3.5cm]{logo_izquierdo.png}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \raggedleft
+        \includegraphics[width=3.5cm]{logo_derecho.png}
+    \end{minipage}
+
+    % Espacio entre las imágenes y el título
+    \vspace{1.2cm}
+
+    % Título institucional centrado entre imágenes
+    \begin{center}
+        {\Huge\bfseries Universidad Nacional del Altiplano\par}
+        \vspace{0.5cm}
+        {\Large\bfseries Facultad de Ingeniería Estadística e Informática\par}
+
+        \vspace{2cm}
+        {\Huge\bfseries\textcolor{blue!70!black}{Manual de Estructura de Datos}\par}
+        \vspace{0.3cm}
+        {\LARGE\bfseries\textcolor{gray!50!black}{Desde la Semana 1 hasta la 17}\par}
+
+        \vspace{3cm}
+        {\Large\bfseries Autor: Jefersson Andy Quispe Quispe\par}
+        \vspace{0.5cm}
+        {\large\textit{Curso de Estructura de Datos}\par}
+
+        \vfill
+        {\large Julio, 2025\par}
+    \end{center}
+
+    \restoregeometry
+\end{titlepage}
+
+
+
+
+
+\tableofcontents
+\newpage
+
+
+\chapter*{Semana 1: Fundamentos de Estructuras de Datos}
+\addcontentsline{toc}{chapter}{Semana 1: Fundamentos de Estructuras de Datos}
+
+\section*{Criterio de desempeño}
+Define conceptos fundamentales de estructura de datos.
+
+\section*{Conocimiento}
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!80!black, title=¿Qué son las estructuras de datos?]
+Una estructura de datos es una forma organizada de almacenar información en una computadora. Permite acceder, modificar, eliminar o insertar datos de manera eficiente. Son como "contenedores inteligentes" que nos ayudan a trabajar con datos.
+\end{tcolorbox}
+
+\section*{¿Por qué son importantes?}
+\begin{itemize}
+  \item Permiten resolver problemas de la vida real, como organizar contactos, guardar fotos o simular una fila.
+  \item Hacen nuestros programas más rápidos, organizados y fáciles de entender.
+  \item Son la base para aprender algoritmos, inteligencia artificial y bases de datos.
+\end{itemize}
+
+\section*{Tipos principales de estructuras de datos}
+\begin{itemize}
+  \item \textbf{Lineales:} Se organizan en secuencia. Ej: Arreglos, listas, pilas, colas.
+  \item \textbf{No lineales:} Tienen jerarquía o relaciones complejas. Ej: Árboles, grafos.
+  \item \textbf{Estáticas:} Tienen tamaño fijo. Ej: Arreglos.
+  \item \textbf{Dinámicas:} Crecen y cambian durante el programa. Ej: Listas enlazadas.
+\end{itemize}
+
+\section*{Analicemos una estructura dinámica lineal: Lista enlazada}
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!80!black, title=¿Qué es una lista enlazada?]
+Es una colección de elementos (llamados nodos) conectados entre sí mediante punteros. Cada nodo guarda un valor y un enlace al siguiente nodo.
+\end{tcolorbox}
+
+\begin{center}
+\includegraphics[width=1\textwidth]{lista_enlazada_simple.png}
+\end{center}
+
+\section*{Ejemplo explicativo}
+Imagina que cada nodo es como un vagón de tren:
+\begin{itemize}
+  \item Cada vagón lleva un número (el dato).
+  \item Todos están conectados uno tras otro (con punteros).
+  \item El último vagón no apunta a nadie (su puntero es NULL).
+\end{itemize}
+
+\subsection*{Código básico en C++}
+\begin{verbatim}
+struct Nodo {
+  int dato;
+  Nodo* siguiente;
+};
+
+Nodo* inicio = nullptr; // Lista vacía inicialmente
+\end{verbatim}
+
+Este fragmento define la estructura del nodo y un puntero para iniciar la lista.
+
+\section*{Ventajas de las listas enlazadas}
+\begin{itemize}
+  \item No necesitas definir el tamaño desde el principio.
+  \item Fácil de insertar o eliminar elementos en cualquier parte.
+\end{itemize}
+
+\section*{Desventajas}
+\begin{itemize}
+  \item Acceder a un elemento específico es más lento que con arreglos.
+\end{itemize}
+
+\section*{Actividades sugeridas}
+\begin{itemize}
+  \item Dibuja tu propia lista enlazada con nombres.
+  \item Crea una lista en papel con 3 nodos conectados con flechas.
+  \item Intenta cambiar el orden y ver cómo afecta la lista.
+\end{itemize}
+
+\section*{Resumen de la Semana 1}
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!80!black, title=Conclusión]
+Las estructuras de datos son esenciales para la informática. Las listas enlazadas son una poderosa herramienta dinámica que se adapta a las necesidades de nuestros programas.
+\end{tcolorbox}
+
+\chapter*{Semana 2: Arreglos}
+\addcontentsline{toc}{chapter}{Semana 2: Arreglos}
+\section*{Criterio de desempeño}
+Conoce y aplica datos en arreglos.
+
+\section*{Conocimiento}
+\begin{tcolorbox}[colback=green!5!white, colframe=green!50!black, title=¿Qué es un arreglo?]
+Un arreglo es una estructura de datos que almacena múltiples elementos del mismo tipo en ubicaciones contiguas de memoria. Cada elemento se accede mediante un índice.
+\end{tcolorbox}
+
+\subsection*{Características principales}
+\begin{itemize}
+  \item Tamaño fijo definido en tiempo de compilación.
+  \item Acceso rápido a los elementos mediante su índice (coste constante).
+  \item No permite inserciones dinámicas sin mover elementos.
+\end{itemize}
+
+\subsection*{Ejemplo de arreglo unidimensional}
+\textbf{Ejemplo:}
+\begin{verbatim}
+int numeros[5] = {10, 20, 30, 40, 50};
+// Acceder al tercer elemento:
+numeros[2] => 30
+\end{verbatim}
+
+\subsection*{Aplicaciones comunes}
+\begin{itemize}
+  \item Almacenamiento de datos repetitivos (temperaturas diarias, notas, etc).
+  \item Implementación de matrices, tablas, vectores.
+  \item Búsqueda y ordenamiento de datos.
+\end{itemize}
+
+\section*{Estructuras de datos no lineales}
+\begin{tcolorbox}[colback=green!10!white, colframe=green!50!black, title=¿Qué son?]
+Son estructuras donde los elementos no se organizan en una secuencia lineal. Ejemplos: Árboles y Grafos.
+\end{tcolorbox}
+
+\subsection*{Diferencias con estructuras lineales}
+\begin{itemize}
+  \item No existe una única trayectoria entre los datos.
+  \item Pueden tener múltiples conexiones y relaciones jerárquicas.
+\end{itemize}
+
+\subsection*{Ejemplo: Árbol binario simple}
+\includegraphics[width=0.6\textwidth]{tree_example.png} 
+
+\begin{itemize}
+  \item Cada nodo tiene hasta dos hijos.
+  \item Se usa en bases de datos, inteligencia artificial, compiladores, etc.
+\end{itemize}
+
+\section*{Resumen de la Semana 2}
+\begin{tcolorbox}[colback=green!5!white, colframe=green!50!black, title=Conclusión]
+El dominio de los arreglos es clave para resolver problemas estructurados y repetitivos. Las estructuras no lineales permiten representar relaciones más complejas y se usarán en etapas avanzadas del curso.
+\end{tcolorbox}
+
+\chapter*{Semana 3: Algoritmos con arreglos unidimensionales}
+\addcontentsline{toc}{chapter}{Semana 3: Algoritmos con arreglos unidimensionales}
+
+\section*{Criterio de desempeño}
+Utiliza algoritmos con arreglos unidimensionales.
+
+\section*{¿Qué es un algoritmo aplicado a un arreglo?}
+\begin{tcolorbox}[colback=green!5!white, colframe=green!80!black, title=Concepto clave]
+Un algoritmo es una serie de pasos lógicos y ordenados para resolver un problema. Cuando usamos arreglos, los algoritmos nos permiten analizarlos, modificarlos o transformarlos.
+\end{tcolorbox}
+
+\begin{center}
+\includegraphics[width=0.75\textwidth]{recorrido_arreglo.png}
+\end{center}
+
+\section*{1. Recorrer un arreglo para sumar sus elementos}
+\begin{verbatim}
+int numeros[5] = {4, 7, 2, 9, 1};
+int suma = 0;
+
+for (int i = 0; i < 5; i++) {
+  suma += numeros[i];
+}
+cout << "La suma es: " << suma;
+// Resultado: 23
+\end{verbatim}
+
+\section*{2. Encontrar el número mayor de un arreglo}
+\begin{verbatim}
+int mayor = numeros[0];
+for (int i = 1; i < 5; i++) {
+  if (numeros[i] > mayor) {
+    mayor = numeros[i];
+  }
+}
+cout << "El mayor es: " << mayor;
+// Resultado: 9
+\end{verbatim}
+
+\section*{3. Buscar un valor dentro del arreglo}
+\begin{verbatim}
+int buscar = 2;
+bool encontrado = false;
+for (int i = 0; i < 5; i++) {
+  if (numeros[i] == buscar) {
+    encontrado = true;
+    break;
+  }
+}
+\end{verbatim}
+
+\section*{4. Invertir un arreglo (visualmente)}
+\begin{verbatim}
+int invertido[5];
+for (int i = 0; i < 5; i++) {
+  invertido[i] = numeros[4 - i];
+}
+\end{verbatim}
+
+\section*{Actividad sugerida}
+\begin{itemize}
+  \item Crear un programa que sume los números pares de un arreglo.
+  \item Diseñar un programa que busque si existe un número ingresado por el usuario.
+\end{itemize}
+
+\section*{Resumen de la Semana 3}
+\begin{tcolorbox}[colback=green!5!white, colframe=green!80!black, title=Conclusión]
+Aplicar algoritmos a los arreglos nos permite aprovechar su estructura para resolver problemas reales de manera lógica, rápida y ordenada.
+\end{tcolorbox}
+
+
+\chapter*{Semana 4: Arreglos Bi y Multidimensionales}
+\addcontentsline{toc}{chapter}{Semana 4: Arreglos Bi y Multidimensionales}
+
+\section*{Criterio de desempeño}
+Conoce y aplica datos de arreglos bi y multidimensionales.
+
+\section*{Conocimiento}
+\begin{tcolorbox}[colback=purple!5!white, colframe=purple!80!black, title=¿Qué son los arreglos multidimensionales?]
+Son estructuras de datos que organizan elementos en más de una dimensión, como filas y columnas. El más común es el arreglo bidimensional (matriz).
+\end{tcolorbox}
+
+\begin{center}
+\includegraphics[width=0.75\textwidth]{semana4_matriz.png} 
+\end{center}
+
+\section*{Características de los arreglos bidimensionales}
+\begin{itemize}
+  \item Se accede a los elementos mediante dos índices: fila y columna.
+  \item Se usan para representar tablas, tableros de juego, imágenes, entre otros.
+\end{itemize}
+
+\section*{Ejemplo de declaración y acceso a una matriz}
+\begin{verbatim}
+int matriz[2][3] = {
+  {1, 2, 3},
+  {4, 5, 6}
+};
+
+// Acceder al elemento fila 1, columna 2
+int valor = matriz[1][2]; // Resultado: 6
+\end{verbatim}
+
+\section*{Recorrer todos los elementos de una matriz}
+\begin{verbatim}
+for (int i = 0; i < 2; i++) {
+  for (int j = 0; j < 3; j++) {
+    cout << matriz[i][j] << " ";
+  }
+  cout << endl;
+}
+\end{verbatim}
+
+\section*{Aplicaciones comunes}
+\begin{itemize}
+  \item Guardar las edades de personas por año y grupo.
+  \item Representar un tablero de juego como el tres en raya.
+  \item Crear imágenes en blanco y negro (matriz de píxeles).
+\end{itemize}
+
+\section*{Ejemplo: Suma de la diagonal principal}
+\begin{verbatim}
+int M[3][3] = {
+  {1, 2, 3},
+  {4, 5, 6},
+  {7, 8, 9}
+};
+int sumaDiagonal = 0;
+
+for (int i = 0; i < 3; i++) {
+  sumaDiagonal += M[i][i];
+}
+// Resultado: 1 + 5 + 9 = 15
+\end{verbatim}
+
+\section*{Ejemplo: Transposición de una matriz}
+\begin{verbatim}
+int A[3][3] = {
+  {1, 2, 3},
+  {4, 5, 6},
+  {7, 8, 9}
+};
+int T[3][3];
+
+for (int i = 0; i < 3; i++) {
+  for (int j = 0; j < 3; j++) {
+    T[j][i] = A[i][j];
+  }
+}
+// T es la transpuesta de A
+\end{verbatim}
+
+\section*{Actividades sugeridas}
+\begin{itemize}
+  \item Crear una matriz 3x3 con números del 1 al 9.
+  \item Sumar los valores de cada fila.
+  \item Hallar el número mayor en toda la matriz.
+  \item Transponer una matriz y mostrar ambos resultados.
+  \item Diseñar un juego básico de tres en raya usando una matriz.
+\end{itemize}
+
+\section*{Resumen de la Semana 4}
+\begin{tcolorbox}[colback=purple!5!white, colframe=purple!80!black, title=Conclusión]
+Los arreglos multidimensionales son esenciales para organizar y representar datos tabulares. Permiten resolver problemas de la vida real, como análisis de datos, gráficos o juegos.
+\end{tcolorbox}
+
+\chapter*{Semana 5: Algoritmos en Arreglos Bidimensionales}
+\addcontentsline{toc}{chapter}{Semana 5: Algoritmos en Arreglos Bidimensionales}
+
+\section*{Criterio de desempeño}
+Utiliza algoritmos efectivos en arreglos bi y multidimensionales.
+
+\section*{¿Qué es un algoritmo en una matriz?}
+\begin{tcolorbox}[colback=cyan!5!white, colframe=cyan!80!black, title=Definición]
+Un algoritmo aplicado a una matriz es una secuencia de pasos que nos permite operar sobre sus elementos: recorrerla, sumar, buscar, comparar, transponer o modificar sus valores.
+\end{tcolorbox}
+
+\begin{center}
+\includegraphics[width=0.75\textwidth]{semana5_algoritmos_matriz.png} 
+\end{center}
+
+\section*{Ejemplo 1: Suma de cada fila y columna}
+\begin{verbatim}
+int M[3][3] = {
+  {1, 2, 3},
+  {4, 5, 6},
+  {7, 8, 9}
+};
+
+// Suma de filas
+for (int i = 0; i < 3; i++) {
+  int sumaFila = 0;
+  for (int j = 0; j < 3; j++) {
+    sumaFila += M[i][j];
+  }
+  cout << "Fila " << i << ": " << sumaFila << endl;
+}
+
+// Suma de columnas
+for (int j = 0; j < 3; j++) {
+  int sumaCol = 0;
+  for (int i = 0; i < 3; i++) {
+    sumaCol += M[i][j];
+  }
+  cout << "Columna " << j << ": " << sumaCol << endl;
+}
+\end{verbatim}
+
+\section*{Ejemplo 2: Encontrar el número mayor de la matriz}
+\begin{verbatim}
+int mayor = M[0][0];
+for (int i = 0; i < 3; i++) {
+  for (int j = 0; j < 3; j++) {
+    if (M[i][j] > mayor) {
+      mayor = M[i][j];
+    }
+  }
+}
+cout << "Mayor: " << mayor;
+\end{verbatim}
+
+\section*{Ejemplo 3: Multiplicación de dos matrices cuadradas}
+\begin{verbatim}
+int A[2][2] = {{1, 2}, {3, 4}};
+int B[2][2] = {{5, 6}, {7, 8}};
+int C[2][2];
+
+for (int i = 0; i < 2; i++) {
+  for (int j = 0; j < 2; j++) {
+    C[i][j] = 0;
+    for (int k = 0; k < 2; k++) {
+      C[i][j] += A[i][k] * B[k][j];
+    }
+  }
+}
+\end{verbatim}
+
+\section*{Ejemplo 4: Verificar si una matriz es simétrica}
+\begin{verbatim}
+bool simetrica = true;
+for (int i = 0; i < 3 && simetrica; i++) {
+  for (int j = 0; j < 3; j++) {
+    if (M[i][j] != M[j][i]) {
+      simetrica = false;
+      break;
+    }
+  }
+}
+\end{verbatim}
+
+\section*{Aplicaciones de estos algoritmos}
+\begin{itemize}
+  \item Análisis de datos tabulados.
+  \item Operaciones matemáticas.
+  \item Procesamiento de imágenes.
+  \item Verificación de propiedades (simetría, diagonales, etc).
+\end{itemize}
+
+\section*{Actividades sugeridas}
+\begin{itemize}
+  \item Sumar los elementos de la diagonal secundaria.
+  \item Detectar si una fila contiene solo números pares.
+  \item Determinar si dos matrices son iguales.
+  \item Construir un programa que genere la matriz transpuesta.
+\end{itemize}
+
+\section*{Resumen de la Semana 5}
+\begin{tcolorbox}[colback=cyan!5!white, colframe=cyan!80!black, title=Conclusión]
+Los algoritmos aplicados a matrices son herramientas poderosas para analizar, transformar y utilizar datos estructurados. Son esenciales en áreas como la matemática, programación, visión por computadora y más.
+\end{tcolorbox}
+
+\chapter*{Semana 6: Listas y Pilas en Estructuras de Datos}
+\addcontentsline{toc}{chapter}{Semana 6: Listas y Pilas en Estructuras de Datos}
+
+\section*{Conocimiento: ¿Qué son listas y pilas?}
+\begin{tcolorbox}[colback=teal!5!white, colframe=teal!80!black, title=Definiciones clave]
+\textbf{Lista enlazada:} Es una secuencia de nodos conectados donde cada nodo contiene un valor y un enlace al siguiente nodo. A diferencia de los arreglos, las listas no necesitan espacios contiguos en memoria.
+
+\textbf{Pila (Stack):} Es una estructura de datos de tipo LIFO (Last In, First Out), donde el último elemento en entrar es el primero en salir. Solo se permite insertar (push) o eliminar (pop) elementos desde el tope.
+\end{tcolorbox}
+
+\begin{center}
+\includegraphics[width=0.6\textwidth]{semana6_listas_pilas.png} 
+\end{center}
+
+\section*{¿Cuándo usar una lista o una pila?}
+\begin{itemize}
+  \item Usa \textbf{listas} cuando necesitas insertar, eliminar o recorrer datos dinámicamente.
+  \item Usa \textbf{pilas} cuando deseas llevar control de acciones recientes, como deshacer en editores, o seguimiento de llamadas en programación.
+\end{itemize}
+
+\section*{Ejemplo 1: Lista enlazada simple en C++}
+\begin{verbatim}
+#include <iostream>
+using namespace std;
+
+struct Nodo {
+  int dato;
+  Nodo* siguiente;
+};
+
+Nodo* cabeza = nullptr;
+
+void insertarInicio(int valor) {
+  Nodo* nuevo = new Nodo{valor, cabeza};
+  cabeza = nuevo;
+}
+
+void mostrarLista() {
+  Nodo* actual = cabeza;
+  while (actual != nullptr) {
+    cout << actual->dato << " -> ";
+    actual = actual->siguiente;
+  }
+  cout << "NULL" << endl;
+}
+\end{verbatim}
+
+\section*{Ejemplo 2: Pila con operaciones básicas}
+\begin{verbatim}
+#include <stack>
+#include <iostream>
+using namespace std;
+
+int main() {
+  stack<int> miPila;
+  miPila.push(10);  // Apilar
+  miPila.push(20);
+  miPila.push(30);
+
+  cout << "Cima: " << miPila.top() << endl; // 30
+
+  miPila.pop();
+  cout << "Nueva cima: " << miPila.top() << endl; // 20
+
+  return 0;
+}
+\end{verbatim}
+
+\section*{Aplicaciones prácticas}
+\begin{itemize}
+  \item \textbf{Listas enlazadas:} Representación de rutas, historial de navegación, listas de tareas, colas de impresión.
+  \item \textbf{Pilas:} Validación de paréntesis en expresiones, navegación de páginas web, retroceso en juegos, análisis de llamadas.
+\end{itemize}
+
+\section*{Analogía visual: Pila de platos}
+\begin{itemize}
+  \item Imagina apilar platos uno sobre otro en la cocina.
+  \item El último plato colocado es el primero que puedes retirar.
+  \item Esta lógica es idéntica a cómo opera una pila en programación.
+\end{itemize}
+
+\section*{Actividades sugeridas}
+\begin{itemize}
+  \item Crear una lista enlazada de números e imprimirla con una función.
+  \item Insertar nodos al inicio y final de la lista.
+  \item Simular una pila de enteros con operaciones de push y pop, mostrando la cima en cada paso.
+  \item Representar gráficamente una lista con 3 nodos enlazados.
+\end{itemize}
+
+\section*{Resumen de la Semana 6}
+\begin{tcolorbox}[colback=teal!5!white, colframe=teal!80!black, title=Conclusión]
+Las listas y pilas son estructuras dinámicas clave en programación. Dominar su uso permite desarrollar aplicaciones más flexibles y eficientes, desde gestores de tareas hasta compiladores y editores de texto.
+\end{tcolorbox}
+
+\chapter*{Semana 7: Colas y Tipos de Búsqueda}
+\addcontentsline{toc}{chapter}{Semana 7: Colas y Tipos de Búsqueda}
+
+\section*{Criterio de desempeño}
+\vspace{-1em}
+\noindent Conoce y aplica la estructura de colas.
+\vspace{-0.5em}
+
+\section*{Conocimiento: ¿Qué son colas y cómo se busca información?}
+\begin{tcolorbox}[colback=orange!5!white, colframe=orange!80!black, title=Definiciones clave]
+\textbf{Cola (Queue):} Estructura de datos de tipo FIFO (First In, First Out). El primer elemento en entrar es el primero en salir. Se utilizan operaciones como \texttt{enqueue} (insertar) y \texttt{dequeue} (eliminar).
+
+\textbf{Búsqueda:} Proceso de localizar un dato en una estructura. Existen distintos tipos de búsqueda según el orden y el tipo de datos.
+\end{tcolorbox}
+
+\begin{center}
+\includegraphics[width=0.75\textwidth]{semana7_colas_busqueda.png} 
+\end{center}
+
+\section*{Tipos de búsqueda comunes}
+\begin{itemize}
+  \item \textbf{Búsqueda lineal:} Recorre uno por uno hasta encontrar el valor.
+  \item \textbf{Búsqueda binaria:} Requiere que el arreglo esté ordenado. Divide en mitades para buscar más eficientemente.
+\end{itemize}
+
+\section*{Ejemplo 1: Cola con operaciones básicas}
+\begin{verbatim}
+#include <queue>
+#include <iostream>
+using namespace std;
+
+int main() {
+  queue<int> miCola;
+  miCola.push(10);  // Enqueue
+  miCola.push(20);
+  miCola.push(30);
+
+  cout << "Frente: " << miCola.front() << endl; // 10
+  miCola.pop(); // Dequeue
+  cout << "Nuevo frente: " << miCola.front() << endl; // 20
+
+  return 0;
+}
+\end{verbatim}
+
+\section*{Ejemplo 2: Búsqueda lineal}
+\begin{verbatim}
+bool buscarLineal(int arr[], int n, int x) {
+  for (int i = 0; i < n; i++) {
+    if (arr[i] == x) return true;
+  }
+  return false;
+}
+\end{verbatim}
+
+\section*{Ejemplo 3: Búsqueda binaria}
+\begin{verbatim}
+bool buscarBinaria(int arr[], int izq, int der, int x) {
+  while (izq <= der) {
+    int medio = (izq + der) / 2;
+    if (arr[medio] == x) return true;
+    if (arr[medio] < x) izq = medio + 1;
+    else der = medio - 1;
+  }
+  return false;
+}
+\end{verbatim}
+
+\section*{Actividades sugeridas}
+\begin{itemize}
+  \item Crear una cola con cinco elementos y mostrar el frente antes y después del dequeue.
+  \item Hacer una búsqueda lineal de un número en un arreglo de 10 enteros.
+  \item Probar búsqueda binaria en un arreglo previamente ordenado.
+  \item Comparar los pasos de búsqueda lineal vs binaria.
+\end{itemize}
+
+\section*{Resumen de la Semana 7}
+\begin{tcolorbox}[colback=orange!5!white, colframe=orange!80!black, title=Conclusión]
+Las colas permiten organizar procesos en orden de llegada, mientras que los algoritmos de búsqueda son esenciales para recuperar datos de manera eficiente. Ambos son pilares fundamentales en estructuras de datos y programación.
+\end{tcolorbox}
+
+
+\chapter*{Semana 8: Introducción a Grafos}
+\addcontentsline{toc}{chapter}{Semana 8: Introducción a Grafos}
+
+\section*{Criterio de desempeño}
+\vspace{-1em}
+\noindent Demuestra capacidades logradas en la unidad.
+\vspace{-0.5em}
+
+\section*{Conocimiento: Grafos y su representación}
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!80!black, title=¿Qué es un grafo?]
+Un grafo es una estructura de datos que modela relaciones entre objetos. Se compone de \textbf{vértices (nodos)} y \textbf{aristas (conexiones)}. Puede ser dirigido o no dirigido.
+\end{tcolorbox}
+
+\begin{center}
+\includegraphics[width=0.7\textwidth]{semana8_grafos_basicos.png} 
+\end{center}
+
+\section*{Tipos de grafos}
+\begin{itemize}
+  \item \textbf{Grafo no dirigido:} Las conexiones no tienen dirección específica.
+  \item \textbf{Grafo dirigido (dígrafo):} Las aristas tienen dirección, como un camino de ida.
+  \item \textbf{Multigrafo:} Puede haber varias aristas entre los mismos nodos.
+  \item \textbf{Grafo ponderado:} Las aristas tienen un valor o peso (distancia, costo, etc).
+\end{itemize}
+
+\section*{Representación de grafos}
+\begin{itemize}
+  \item \textbf{Matriz de adyacencia:} Matriz cuadrada que indica con 1 si hay conexión entre vértices.
+  \item \textbf{Lista de adyacencia:} Cada vértice almacena una lista con los nodos vecinos.
+\end{itemize}
+
+\section*{Ejemplo: Matriz de adyacencia en C++}
+\begin{verbatim}
+int grafo[4][4] = {
+  {0, 1, 0, 0},
+  {1, 0, 1, 1},
+  {0, 1, 0, 0},
+  {0, 1, 0, 0}
+};
+\end{verbatim}
+
+\section*{Actividades sugeridas}
+\begin{itemize}
+  \item Dibujar un grafo simple con 5 nodos y 6 aristas.
+  \item Construir su matriz de adyacencia y lista de adyacencia.
+  \item Indicar si el grafo es dirigido o no, y si es ponderado.
+\end{itemize}
+
+\section*{Resumen de la Semana 8}
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!80!black, title=Conclusión]
+Los grafos son herramientas poderosas para modelar redes, relaciones y estructuras complejas. Son ampliamente utilizados en ciencias de la computación, redes sociales, sistemas de recomendación y más.
+\end{tcolorbox}
+
+\chapter*{Semana 9: Grafos Dirigidos y No Dirigidos}
+\addcontentsline{toc}{chapter}{Semana 9: Grafos Dirigidos y No Dirigidos}
+
+\section*{Criterio de desempeño}
+\vspace{-1em}
+\noindent Demuestra capacidades logradas en la unidad.
+\vspace{-0.5em}
+
+\section*{Conocimiento: Tipos de grafos y diferencias fundamentales}
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!80!black, title=Grafo dirigido vs. no dirigido]
+\textbf{Grafo no dirigido:} Las aristas representan relaciones bidireccionales, como una amistad mutua.
+
+\textbf{Grafo dirigido:} Las aristas tienen una orientación específica, como un enlace de una página web a otra.
+\end{tcolorbox}
+
+\begin{center}
+\includegraphics[width=0.7\textwidth]{semana9_grafos_dirigidos.png} 
+\end{center}
+
+\section*{Ejemplo práctico: Amigos y seguidores}
+\begin{itemize}
+  \item En una red social, la relación de amistad puede representarse con un grafo no dirigido (ambos son amigos).
+  \item El sistema de seguidores (como en Twitter) se representa con un grafo dirigido: A sigue a B, pero B no necesariamente a A.
+\end{itemize}
+
+\section*{Ejemplo en C++: Representación con lista de adyacencia}
+\begin{verbatim}
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+  int V = 4;
+  vector<vector<int>> grafo(V);
+  grafo[0].push_back(1); // 0 -> 1
+  grafo[0].push_back(2); // 0 -> 2
+  grafo[1].push_back(3); // 1 -> 3
+
+  for (int i = 0; i < V; i++) {
+    cout << i << " -> ";
+    for (int j : grafo[i]) {
+      cout << j << " ";
+    }
+    cout << endl;
+  }
+  return 0;
+}
+\end{verbatim}
+
+\section*{Actividades sugeridas}
+\begin{itemize}
+  \item Dibujar un grafo dirigido con 4 nodos representando una red social.
+  \item Mostrar su lista de adyacencia.
+  \item Dibujar el grafo no dirigido equivalente.
+\end{itemize}
+
+\section*{Resumen de la Semana 9}
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!80!black, title=Conclusión]
+Entender la diferencia entre grafos dirigidos y no dirigidos permite modelar distintas relaciones reales como caminos, redes sociales, flujos de trabajo, y más.
+\end{tcolorbox}
+
+
+\chapter*{Semana 10: Trayectorias y Ciclos en Grafos I}
+\addcontentsline{toc}{chapter}{Semana 10: Trayectorias y Ciclos en Grafos I}
+
+\section*{Criterio de desempeño}
+\vspace{-1em}
+\noindent Define y conoce las estructuras dinámicas lineales de datos.
+\vspace{-0.5em}
+
+\section*{Conocimiento: Trayectorias y Ciclos}
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!80!black, title=¿Qué es una trayectoria y un ciclo en un grafo?]
+\textbf{Trayectoria (camino):} Es una secuencia de vértices donde cada par consecutivo está conectado por una arista. Puede ser simple o contener vértices repetidos.
+
+\textbf{Ciclo:} Es una trayectoria que comienza y termina en el mismo vértice, sin repetir aristas ni vértices (excepto el inicial/final).
+\end{tcolorbox}
+
+\begin{center}
+\includegraphics[width=0.7\textwidth]{semana10_caminos_ciclos.png} 
+\end{center}
+
+\section*{Ejemplo: Trayectoria en un grafo}
+\begin{verbatim}
+// Grafo representado como lista de adyacencia
+vector<vector<int>> grafo = {
+  {1, 2},    // nodo 0
+  {0, 3},    // nodo 1
+  {0, 3},    // nodo 2
+  {1, 2, 4}, // nodo 3
+  {3}        // nodo 4
+};
+
+// Trayectoria de 0 -> 2 -> 3 -> 4
+\end{verbatim}
+
+\section*{¿Cómo detectar un ciclo?}
+\begin{itemize}
+  \item Utilizando algoritmos de recorrido como DFS.
+  \item Si durante el recorrido encontramos un nodo visitado que no es el padre del nodo actual, existe un ciclo.
+\end{itemize}
+
+\section*{Código: Detección de ciclo con DFS en grafo no dirigido}
+\begin{verbatim}
+bool tieneCiclo(vector<vector<int>>& grafo, int nodo, int padre, vector<bool>& visitado) {
+  visitado[nodo] = true;
+  for (int vecino : grafo[nodo]) {
+    if (!visitado[vecino]) {
+      if (tieneCiclo(grafo, vecino, nodo, visitado)) return true;
+    } else if (vecino != padre) {
+      return true;
+    }
+  }
+  return false;
+}
+\end{verbatim}
+
+\section*{Actividades sugeridas}
+\begin{itemize}
+  \item Dibujar un grafo con un ciclo y otro sin ciclo.
+  \item Marcar una trayectoria entre dos nodos.
+  \item Implementar el algoritmo de detección de ciclo.
+\end{itemize}
+
+\section*{Resumen de la Semana 10}
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!80!black, title=Conclusión]
+Comprender trayectorias y ciclos es esencial para analizar el comportamiento de los grafos. Estas nociones permiten evaluar conexiones, detectar bucles y resolver problemas como dependencias y rutas.
+\end{tcolorbox}
+
+\chapter*{Semana 11: Trayectorias y Ciclos II - En Grafos Dirigidos}
+\addcontentsline{toc}{chapter}{Semana 11: Trayectorias y Ciclos II - En Grafos Dirigidos}
+
+\section*{Criterio de desempeño}
+\vspace{-1em}
+\noindent Define y conoce las estructuras dinámicas no lineales de datos.
+\vspace{-0.5em}
+
+\section*{Conocimiento: Detección de ciclos en grafos dirigidos}
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!80!black, title=Diferencias clave con grafos no dirigidos]
+En grafos dirigidos, los ciclos siguen la dirección de las aristas. Un ciclo existe si partimos de un nodo y podemos regresar a él siguiendo solo las direcciones establecidas.
+\end{tcolorbox}
+
+\begin{center}
+\includegraphics[width=0.7\textwidth]{semana11_ciclos_dirigidos.png} 
+\end{center}
+
+\section*{Método: Detección de ciclos con DFS y pila de recurrencia}
+\begin{itemize}
+  \item Se usa un vector de nodos visitados y otro que actúa como "pila de llamadas".
+  \item Si un nodo es encontrado en la pila de llamadas nuevamente, hay un ciclo.
+\end{itemize}
+
+\section*{Código en C++: Ciclo en grafo dirigido}
+\begin{verbatim}
+bool cicloDirigido(vector<vector<int>>& grafo, int nodo,
+                   vector<bool>& visitado, vector<bool>& pilaRec) {
+  visitado[nodo] = true;
+  pilaRec[nodo] = true;
+  
+  for (int vecino : grafo[nodo]) {
+    if (!visitado[vecino]) {
+      if (cicloDirigido(grafo, vecino, visitado, pilaRec)) return true;
+    } else if (pilaRec[vecino]) {
+      return true;
+    }
+  }
+
+  pilaRec[nodo] = false;
+  return false;
+}
+\end{verbatim}
+
+\section*{Actividades sugeridas}
+\begin{itemize}
+  \item Dibujar un grafo dirigido con ciclo y sin ciclo.
+  \item Implementar el algoritmo anterior para probar diferentes grafos.
+  \item Identificar trayectorias que forman ciclos dirigidos.
+\end{itemize}
+
+\section*{Resumen de la Semana 11}
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!80!black, title=Conclusión]
+Detectar ciclos en grafos dirigidos es esencial en contextos como programación concurrente, planificación de tareas, y compiladores. Permite evitar dependencias circulares o bloqueos.
+\end{tcolorbox}
+
+\chapter*{Semana 12: Relación entre Árboles y Grafos}
+\addcontentsline{toc}{chapter}{Semana 12: Relación entre Árboles y Grafos}
+
+\section*{Criterio de desempeño}
+\vspace{-1em}
+\noindent Aplica algoritmos efectivos de listas no lineales de datos.
+\vspace{-0.5em}
+
+\section*{Conocimiento: ¿Cómo se relacionan árboles y grafos?}
+\begin{tcolorbox}[colback=green!5!white, colframe=green!80!black, title=Definición comparativa]
+\textbf{Un árbol es un caso especial de grafo:} es un grafo no dirigido, acíclico y conectado. Esto significa que siempre existe una única trayectoria entre cualquier par de nodos.
+\end{tcolorbox}
+
+\begin{center}
+
+\end{center}
+
+\section*{Propiedades clave de un árbol}
+\begin{itemize}
+  \item No tiene ciclos.
+  \item Tiene exactamente $n-1$ aristas para $n$ nodos.
+  \item Siempre hay una única trayectoria entre dos nodos.
+\end{itemize}
+
+\section*{Comparación gráfica}
+\begin{itemize}
+  \item \textbf{Grafo:} puede contener ciclos, múltiples caminos.
+  \item \textbf{Árbol:} no contiene ciclos, estructura jerárquica.
+\end{itemize}
+
+\section*{Aplicaciones prácticas}
+\begin{itemize}
+  \item Representar jerarquías (organigramas, árboles genealógicos).
+  \item Sistemas de archivos.
+  \item Algoritmos de búsqueda (DFS, BFS), compresión (Huffman).
+\end{itemize}
+
+\section*{Ejemplo: Verificar si un grafo es árbol}
+\begin{verbatim}
+bool esArbol(vector<vector<int>>& grafo, int n) {
+  vector<bool> visitado(n, false);
+  if (tieneCiclo(grafo, 0, -1, visitado)) return false;
+  for (bool v : visitado) if (!v) return false;
+  return true;
+}
+\end{verbatim}
+
+\section*{Actividades sugeridas}
+\begin{itemize}
+  \item Dibujar ejemplos de árboles y grafos que no son árboles.
+  \item Aplicar condiciones para determinar si un grafo dado es un árbol.
+\end{itemize}
+
+\section*{Resumen de la Semana 12}
+\begin{tcolorbox}[colback=green!5!white, colframe=green!80!black, title=Conclusión]
+La comprensión de los árboles como una estructura derivada de los grafos permite aplicar algoritmos más especializados y eficientes para resolución de problemas jerárquicos y estructurados.
+\end{tcolorbox}
+
+\chapter*{Semana 13: Terminología y Características de Árboles}
+\addcontentsline{toc}{chapter}{Semana 13: Terminología y Características de Árboles}
+
+\section*{Criterio de desempeño}
+\vspace{-1em}
+\noindent Conoce la terminología y características de árboles.
+\vspace{-0.5em}
+
+\section*{Conocimiento: ¿Qué es un árbol en informática?}
+\begin{tcolorbox}[colback=olive!5!white, colframe=olive!80!black, title=Definición básica]
+Un árbol es una estructura de datos jerárquica que consiste en nodos conectados por aristas. El nodo superior se llama "raíz", y cada nodo puede tener hijos. No contiene ciclos.
+\end{tcolorbox}
+
+\begin{center}
+
+\end{center}
+
+\section*{Términos clave en un árbol}
+\begin{itemize}
+  \item \textbf{Raíz:} nodo principal del árbol (nivel superior).
+  \item \textbf{Nodo hoja:} nodo sin hijos.
+  \item \textbf{Padre e hijo:} relación entre nodos conectados.
+  \item \textbf{Nivel:} profundidad de un nodo en el árbol.
+  \item \textbf{Altura:} longitud del camino más largo desde la raíz hasta una hoja.
+\end{itemize}
+
+\section*{Ejemplo: Representación básica de un árbol binario}
+\begin{verbatim}
+struct Nodo {
+  int valor;
+  Nodo* izq;
+  Nodo* der;
+};
+
+Nodo* raiz = new Nodo{10, nullptr, nullptr};
+raiz->izq = new Nodo{5, nullptr, nullptr};
+raiz->der = new Nodo{15, nullptr, nullptr};
+\end{verbatim}
+
+\section*{Clasificación de árboles}
+\begin{itemize}
+  \item \textbf{Árbol binario:} cada nodo tiene máximo dos hijos.
+  \item \textbf{Árbol completo:} todos los niveles llenos excepto el último.
+  \item \textbf{Árbol balanceado:} alturas de subárboles no difieren mucho.
+\end{itemize}
+
+\section*{Aplicaciones comunes de los árboles}
+\begin{itemize}
+  \item Bases de datos jerárquicas.
+  \item Sistemas de archivos.
+  \item Árboles de decisión y clasificación.
+  \item Expresiones matemáticas.
+\end{itemize}
+
+\section*{Actividades sugeridas}
+\begin{itemize}
+  \item Dibujar un árbol con raíz, hijos, hojas, y niveles.
+  \item Implementar una estructura de árbol binario en C++.
+  \item Analizar si un árbol es completo o balanceado.
+\end{itemize}
+
+\section*{Resumen de la Semana 13}
+\begin{tcolorbox}[colback=olive!5!white, colframe=olive!80!black, title=Conclusión]
+Conocer la terminología y propiedades de los árboles es fundamental para estructurar y navegar información jerárquica. Los árboles son pilares en algoritmos eficientes y estructuras organizadas.
+\end{tcolorbox}
+
+\chapter*{Semana 14: Aplicaciones de Árboles y Recorridos}
+\addcontentsline{toc}{chapter}{Semana 14: Aplicaciones de Árboles y Recorridos}
+
+\section*{Criterio de desempeño}
+\vspace{-1.1em}
+\noindent Aplica algoritmos eficientes en aplicaciones de árboles.
+\vspace{-0.5em}
+
+\section*{Conocimiento: Recorridos de árboles y sus usos}
+\begin{tcolorbox}[colback=orange!5!white, colframe=orange!80!black, title=¿Cómo se recorren los árboles?]
+Existen tres formas clásicas de recorrer un árbol binario:
+\begin{itemize}
+  \item \textbf{Inorden (izq, raíz, der)}: útil para obtener elementos ordenados.
+  \item \textbf{Preorden (raíz, izq, der)}: útil para copiar el árbol o evaluaciones.
+  \item \textbf{Postorden (izq, der, raíz)}: útil para liberar memoria o resolver expresiones.
+\end{itemize}
+\end{tcolorbox}
+
+\begin{center}
+
+\end{center}
+
+\section*{Ejemplo en C++: Recorrido inorden}
+\begin{verbatim}
+void inorden(Nodo* nodo) {
+  if (nodo != nullptr) {
+    inorden(nodo->izq);
+    cout << nodo->valor << " ";
+    inorden(nodo->der);
+  }
+}
+\end{verbatim}
+
+\section*{Aplicaciones comunes de recorridos}
+\begin{itemize}
+  \item \textbf{Inorden:} mostrar datos ordenados (por ejemplo, árbol de búsqueda binaria).
+  \item \textbf{Preorden:} reconstrucción del árbol o impresión jerárquica.
+  \item \textbf{Postorden:} eliminación de nodos o evaluación de expresiones.
+\end{itemize}
+
+\section*{Ejemplo: Evaluación de expresión aritmética con árbol}
+\begin{verbatim}
+// Nodo que puede ser operador o número
+struct Nodo {
+  string valor;
+  Nodo* izq;
+  Nodo* der;
+};
+
+int evaluar(Nodo* nodo) {
+  if (!nodo->izq && !nodo->der)
+    return stoi(nodo->valor);
+  
+  int izqVal = evaluar(nodo->izq);
+  int derVal = evaluar(nodo->der);
+
+  if (nodo->valor == "+") return izqVal + derVal;
+  if (nodo->valor == "-") return izqVal - derVal;
+  if (nodo->valor == "*") return izqVal * derVal;
+  if (nodo->valor == "/") return izqVal / derVal;
+  return 0;
+}
+\end{verbatim}
+
+\section*{Actividades sugeridas}
+\begin{itemize}
+  \item Dibujar un árbol binario con valores numéricos y practicar sus recorridos.
+  \item Implementar funciones para los tres tipos de recorrido en C++.
+  \item Crear un árbol de expresión y evaluarlo con código.
+\end{itemize}
+
+\section*{Resumen de la Semana 14}
+\begin{tcolorbox}[colback=orange!5!white, colframe=orange!80!black, title=Conclusión]
+Dominar los recorridos de árboles permite aplicar eficientemente estructuras jerárquicas a diversos problemas: desde ordenamiento de datos hasta interpretación de expresiones matemáticas.
+\end{tcolorbox}
+
+\chapter*{Semana 15: Grafos en Aplicaciones Reales y BFS}
+\addcontentsline{toc}{chapter}{Semana 15: Grafos en Aplicaciones Reales y BFS}
+
+\section*{Criterio de desempeño}
+\vspace{-1em}
+\noindent Conoce y aplica grafos en aplicaciones reales.
+\vspace{-0.5em}
+
+\section*{Conocimiento: Búsqueda en anchura (BFS)}
+\begin{tcolorbox}[colback=cyan!5!white, colframe=cyan!80!black, title=¿Qué es BFS?]
+La búsqueda en anchura (BFS, por sus siglas en inglés) es un algoritmo de recorrido en grafos que explora todos los nodos de un mismo nivel antes de pasar al siguiente. Es ideal para encontrar la ruta más corta en grafos no ponderados.
+\end{tcolorbox}
+
+\begin{center}
+\includegraphics[width=0.6\textwidth]{semana15_bfs_grafo.png} 
+\end{center}
+
+\section*{Aplicaciones reales de grafos con BFS}
+\begin{itemize}
+  \item Búsqueda de rutas en mapas o redes de transporte.
+  \item Verificación de conectividad en redes sociales o computadoras.
+  \item Solución de laberintos.
+  \item Análisis de dependencias en compiladores.
+\end{itemize}
+
+\section*{Algoritmo BFS en C++ (usando lista de adyacencia)}
+\begin{verbatim}
+#include <iostream>
+#include <vector>
+#include <queue>
+using namespace std;
+
+void BFS(int inicio, vector<vector<int>>& grafo, vector<bool>& visitado) {
+  queue<int> cola;
+  cola.push(inicio);
+  visitado[inicio] = true;
+
+  while (!cola.empty()) {
+    int actual = cola.front(); cola.pop();
+    cout << actual << " ";
+
+    for (int vecino : grafo[actual]) {
+      if (!visitado[vecino]) {
+        visitado[vecino] = true;
+        cola.push(vecino);
+      }
+    }
+  }
+}
+\end{verbatim}
+
+\section*{Actividades sugeridas}
+\begin{itemize}
+  \item Representar un grafo de red de transporte y aplicar BFS desde un nodo inicial.
+  \item Crear un programa que detecte si todos los nodos están conectados.
+  \item Visualizar gráficamente un grafo dirigido y su recorrido BFS.
+\end{itemize}
+
+\section*{Resumen de la Semana 15}
+\begin{tcolorbox}[colback=cyan!5!white, colframe=cyan!80!black, title=Conclusión]
+El algoritmo BFS es una herramienta poderosa para recorrer grafos en anchura. Su uso en aplicaciones reales facilita la búsqueda eficiente de rutas, exploración de redes y análisis de estructuras complejas.
+\end{tcolorbox}
+
+\chapter*{Semana 16: Relación entre Grafos y Árboles}
+\addcontentsline{toc}{chapter}{Semana 16: Relación entre Grafos y Árboles}
+
+\section*{Criterio de desempeño}
+\vspace{-1em}
+\noindent Relaciona grafos y árboles con aplicaciones reales.
+\vspace{-0.5em}
+
+\section*{Conocimiento: ¿Cómo se relacionan los grafos y los árboles?}
+\begin{tcolorbox}[colback=lime!5!white, colframe=lime!80!black, title=Árboles como subcasos de grafos]
+Un árbol es un tipo especial de grafo: es un grafo conectado sin ciclos. Todos los árboles son grafos, pero no todos los grafos son árboles.
+\end{tcolorbox}
+
+\begin{center}
+
+\end{center}
+
+\section*{Comparación entre árboles y grafos}
+\begin{itemize}
+  \item \textbf{Conectividad:} Ambos son estructuras conectadas, pero los árboles no tienen ciclos.
+  \item \textbf{Ciclos:} Un árbol no tiene ciclos; un grafo puede tenerlos.
+  \item \textbf{Relación jerárquica:} Los árboles representan jerarquías (padre-hijo), los grafos no necesariamente.
+\end{itemize}
+
+\section*{Ejemplo: ¿Este grafo es un árbol?}
+\begin{verbatim}
+bool esArbol(vector<vector<int>>& grafo, int nodos) {
+  vector<bool> visitado(nodos, false);
+  if (tieneCiclo(grafo, 0, -1, visitado))
+    return false; // Tiene ciclo → no es árbol
+
+  for (bool v : visitado) {
+    if (!v) return false; // No está conectado completamente
+  }
+  return true;
+}
+\end{verbatim}
+
+\section*{Aplicaciones reales de esta relación}
+\begin{itemize}
+  \item Representación jerárquica de directorios (árbol).
+  \item Redes de computadoras (grafo).
+  \item Árbol de expansión mínima (MST) en algoritmos de redes.
+\end{itemize}
+
+\section*{Actividades sugeridas}
+\begin{itemize}
+  \item Dibujar un grafo que sea un árbol, y uno que no lo sea.
+  \item Implementar una función para verificar si un grafo es un árbol.
+  \item Analizar la conectividad de una red como grafo.
+\end{itemize}
+
+\section*{Resumen de la Semana 16}
+\begin{tcolorbox}[colback=lime!5!white, colframe=lime!80!black, title=Conclusión]
+Comprender la relación entre árboles y grafos permite identificar estructuras jerárquicas y conexiones en redes. Esta relación es clave en algoritmos de eficiencia y diseño de estructuras.
+\end{tcolorbox}
+
+
+\chapter*{Semana 17: DFS y Grafos Ponderados}
+\addcontentsline{toc}{chapter}{Semana 17: DFS y Grafos Ponderados}
+
+\section*{Criterio de desempeño}
+\vspace{-1em}
+\noindent Demuestra las capacidades logradas en la unidad.
+\vspace{-0.5em}
+
+\section*{Conocimiento: Búsqueda en profundidad (DFS) y grafos ponderados}
+\begin{tcolorbox}[colback=red!5!white, colframe=red!80!black, title=¿Qué es DFS y qué son grafos ponderados?]
+\textbf{DFS (Depth-First Search):} es un algoritmo de recorrido que explora lo más profundo posible en cada rama antes de retroceder. Ideal para detectar ciclos, componentes conexos y realizar recorridos sistemáticos.
+
+\textbf{Grafos ponderados:} son grafos cuyas aristas tienen un peso o costo asociado (por ejemplo, distancia, tiempo, dinero). Se usan para encontrar rutas óptimas.
+\end{tcolorbox}
+
+\begin{center}
+\includegraphics[width=1.1\textwidth]{semana17_dfs_ponderado.png} 
+\end{center}
+
+\section*{Ejemplo DFS en C++}
+\begin{verbatim}
+void DFS(int nodo, vector<vector<int>>& grafo, vector<bool>& visitado) {
+  visitado[nodo] = true;
+  cout << nodo << " ";
+  for (int vecino : grafo[nodo]) {
+    if (!visitado[vecino]) {
+      DFS(vecino, grafo, visitado);
+    }
+  }
+}
+\end{verbatim}
+
+\section*{Ejemplo de grafo ponderado (usando pares)}
+\begin{verbatim}
+vector<vector<pair<int, int>>> grafo(n);
+// grafo[u].push_back({v, peso});
+grafo[0].push_back({1, 5});
+grafo[1].push_back({2, 3});
+grafo[0].push_back({2, 10});
+\end{verbatim}
+
+\section*{Aplicaciones reales}
+\begin{itemize}
+  \item DFS: resolución de laberintos, detección de ciclos, análisis de grafos.
+  \item Grafos ponderados: planificación de rutas, redes de logística, navegación GPS.
+\end{itemize}
+
+\section*{Actividades sugeridas}
+\begin{itemize}
+  \item Implementar DFS y visualizar su recorrido.
+  \item Dibujar un grafo ponderado y codificarlo en C++.
+  \item Determinar si un grafo tiene ciclos utilizando DFS.
+\end{itemize}
+
+\section*{Resumen de la Semana 17}
+\begin{tcolorbox}[colback=red!5!white, colframe=red!80!black, title=Conclusión]
+Con DFS y grafos ponderados se finaliza el recorrido por las estructuras fundamentales. Su dominio permite aplicar algoritmos a problemas complejos como planificación, búsqueda y optimización.
+\end{tcolorbox}
+
+\end{document}
