@@ -1,0 +1,11 @@
+#include <iostream>
+using namespace std;
+int main() {
+int n = 5, x = 7, a[6] = {1, 3, 5, 6, 8};
+a[n] = x; // centinela
+int i = 0;
+while (a[i] != x) i++;
+if (i < n) cout << "Encontrado" << endl;
+else cout << "No encontrado" << endl;
+return 0;
+}
