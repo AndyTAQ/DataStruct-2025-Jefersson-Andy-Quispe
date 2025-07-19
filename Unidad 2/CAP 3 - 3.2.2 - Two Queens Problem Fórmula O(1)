@@ -1,0 +1,9 @@
+#include <iostream>
+using namespace std;
+int main() {
+int n;
+cin >> n;
+int q = (3 * n * n * n * n - 10 * n * n * n + 9 * n * n - 2 * n) / 6;
+cout << "Formulas para q(n): " << q << endl;
+return 0;
+}
