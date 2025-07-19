@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    priority_queue<int> q;
+    q.push(3);
+    q.push(5);
+    q.push(7);
+    q.push(2);
+
+    cout << q.top() << "\n";
+    q.pop();
+    cout << q.top() << "\n";
+    q.pop();
+    q.push(6);
+    cout << q.top() << "\n";
+    q.pop();
+
+    priority_queue<int, vector<int>, greater<int>> minq;
+    minq.push(3);
+    minq.push(5);
+    minq.push(1);
+
+    cout << minq.top() << "\n";
+
+    return 0;
+}
