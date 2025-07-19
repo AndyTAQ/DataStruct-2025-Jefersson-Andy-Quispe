@@ -1,0 +1,23 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void countingSort(vector<int>& array, int maxValue) {
+    vector<int> count(maxValue + 1, 0);
+    
+    for (int x : array) count[x]++;
+    
+    array.clear();
+    for (int i = 0; i <= maxValue; i++) {
+        for (int j = 0; j < count[i]; j++) {
+            array.push_back(i);
+        }
+    }
+}
+
+int main() {
+    vector<int> v = {3, 6, 1, 9, 3, 5, 9};
+    countingSort(v, 9);
+    for (int x : v) cout << x << " ";
+    return 0;
+}
