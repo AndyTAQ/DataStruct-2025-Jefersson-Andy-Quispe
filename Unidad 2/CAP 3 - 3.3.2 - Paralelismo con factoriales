@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+typedef long long ll;
+
+int main() {
+    int n;
+    cin >> n;
+    ll M = 1e9 + 7; // módulo grande
+    ll f1 = 1, f2 = 1;
+
+    // Dos productos independientes
+    for (int i = 1; i <= n; i += 2) {
+        f1 = (f1 * i) % M;
+        if (i + 1 <= n)
+            f2 = (f2 * (i + 1)) % M;
+    }
+
+    ll factorial = (f1 * f2) % M;
+    cout << "Factorial mod M (paralelismo): " << factorial << endl;
+
+    return 0;
+}
