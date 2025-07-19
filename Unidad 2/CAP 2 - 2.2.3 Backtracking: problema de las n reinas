@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+int n, count_queens = 0;
+vector<int> col, diag1, diag2;
+void search(int y) {
+if (y == n) {
+count_queens++;
+return;
+}
+for (int x = 0; x < n; x++) {
+if (col[x] || diag1[x + y] || diag2[x - y + n - 1]) continue;
+col[x] = diag1[x + y] = diag2[x - y + n - 1] = 1;
+search(y + 1);
+col[x] = diag1[x + y] = diag2[x - y + n - 1] = 0;
+}
+}
+int main() {
+cin >> n;
+col.resize(n);
+diag1.resize(2 * n);
+diag2.resize(2 * n);
+search(0);
+cout << count_queens << "\n";
+}
