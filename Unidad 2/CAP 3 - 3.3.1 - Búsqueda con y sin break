@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+int main() {
+int n = 10, x = 7, a[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+bool ok = false;
+for (int i = 0; i < n; i++) {
+if (a[i] == x) ok = true; // versión sin break
+}
+cout << "Encontrado (sin break): " << ok << endl;
+ok = false;
+for (int i = 0; i < n; i++) {
+if (a[i] == x) { ok = true; break; } // versión con break
+}
+cout << "Encontrado (con break): " << ok << endl;
+return 0;
+}
