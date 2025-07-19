@@ -1,0 +1,17 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int main() {
+int n;
+cin >> n;
+vector<int> array(n);
+for (int &x : array) cin >> x;
+int best = 0, sum = 0;
+for (int i = 0; i < n; i++) {
+sum = max(array[i], sum + array[i]);
+best = max(best, sum);
+}
+cout << "Max Sum: " << best << endl;
+return 0;
+}
