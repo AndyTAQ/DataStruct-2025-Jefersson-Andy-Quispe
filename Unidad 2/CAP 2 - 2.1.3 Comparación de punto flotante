@@ -1,0 +1,13 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+int main() {
+double a = 0.3 * 3 + 0.1;
+printf("%.20f\n", a);
+if (abs(a - 1.0) < 1e-9) {
+cout << "Iguales\n";
+} else {
+cout << "Distintos\n";
+}
+return 0;
+}
