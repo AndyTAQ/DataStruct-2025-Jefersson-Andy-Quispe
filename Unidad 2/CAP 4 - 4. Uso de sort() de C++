@@ -1,0 +1,11 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    vector<int> v = {4, 2, 5, 3, 5, 8, 3};
+    sort(v.begin(), v.end()); // Orden creciente
+    for (int x : v) cout << x << " ";
+    return 0;
+}
