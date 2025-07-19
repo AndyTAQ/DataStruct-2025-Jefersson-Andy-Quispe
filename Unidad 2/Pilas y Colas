@@ -1,0 +1,41 @@
+#include <iostream>
+#include <stack>
+#include <queue>
+#include <stdexcept>
+using namespace std;
+
+int main() {
+    stack<int> pila;  // LIFO
+    queue<int> cola;  // FIFO
+
+    cout << "== PILA ==\n";
+    pila.push(10);    // PUSH 10
+    pila.push(20);    // PUSH 20
+    cout << "Top: " << pila.top() << "\n";           // PEEK 20
+    pila.pop();                                      // POP (20 fuera)
+    cout << "Nuevo top tras POP: " << pila.top() << "\n";  // 10
+    cout << "Tamaño pila: " << pila.size() << "\n\n";
+
+    cout << "== COLA ==\n";
+    cola.push(5);     // ENQUEUE 5
+    cola.push(15);    // ENQUEUE 15
+    cout << "Front: " << cola.front() << "\n";       // FRONT 5
+    cola.pop();                                      // DEQUEUE (5 fuera)
+    cout << "Nuevo front tras DEQUEUE: " << cola.front() << "\n";  // 15
+    cout << "Tamaño cola: " << cola.size() << "\n\n";
+
+    cout << "== TRANSFER de PILA a COLA (n = 1) ==\n";
+    pila.push(30);    // Agregamos nuevo elemento a la pila
+    int n = 1;
+    while (n-- && !pila.empty()) {
+        int x = pila.top();
+        pila.pop();
+        cola.push(x);
+    }
+
+    cout << "Nuevo front en cola tras TRANSFER: " << cola.front() << "\n";
+    cout << "Tamaño pila: " << pila.size() << "\n";
+    cout << "Tamaño cola: " << cola.size() << "\n";
+
+    return 0;
+}
